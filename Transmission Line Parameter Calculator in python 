@@ -1,0 +1,31 @@
+# Transmission Line Parameter Calculator
+
+import math
+
+print("Transmission Line Parameter Calculator")
+
+D = float(input("Enter conductor spacing D (m): "))
+r = float(input("Enter conductor radius r (m): "))
+epsilon_r = float(input("Enter relative permittivity: "))
+
+epsilon_0 = 8.854e-12
+mu_0 = 4 * math.pi * 1e-7
+
+if D > r > 0 and epsilon_r > 0:
+
+    # Inductance per meter
+    L = (mu_0 / math.pi) * math.log(D / r)
+
+    # Capacitance per meter
+    C = (math.pi * epsilon_0 * epsilon_r) / math.log(D / r)
+
+    # Characteristic impedance
+    Z0 = math.sqrt(L / C)
+
+    print("\n--- Results ---")
+    print("Inductance (L) =", L, "H/m")
+    print("Capacitance (C) =", C, "F/m")
+    print("Characteristic Impedance (Z0) =", round(Z0, 2), "Ohms")
+
+else:
+    print("Please enter valid values.")
